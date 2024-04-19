@@ -1,27 +1,23 @@
-import { Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Dialog, Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 
 // Définissez vos catégories de bijoux
 const categories = [
-  { name: 'Bracelets fins', href: '#' },
-  { name: 'Bracelets larges', href: '#' },
-  { name: 'Bracelets unis', href: '#' },
-  { name: 'Bracelets à motif', href: '#' },
-  { name: 'Bracelets homme', href: '#' },
-  { name: 'Bracelets de couple', href: '#' },
-  { name: 'Bracelets de cheville', href: '#' },
-  { name: 'Bracelets personnalisés', href: '#' },
-  { name: 'Colliers', href: '#' },
-  { name: 'atebas/mèche de cheveux', href: '#' },
-
-  { name: 'Bijoux de plage', href: '#' },
-  
+  { name: 'Bracelets fins', href: '/bracelets-fins' },
+  { name: 'Bracelets larges', href: '/bracelets-larges' },
+  { name: 'Bracelets unis', href: '/bracelets-unis' },
+  { name: 'Bracelets à motif', href: '/bracelets-motif' },
+  { name: 'Bracelets homme', href: '/bracelets-homme' },
+  { name: 'Bracelets de couple', href: '/bracelets-couple' },
+  { name: 'Bracelets de cheville', href: '/bracelets-cheville' },
+  { name: 'Bracelets personnalisés', href: '/bracelets-personnalises' },
+  { name: 'Colliers', href: '/bracelets-colliers' },
+  { name: 'atebas/mèche de cheveux', href: '/bracelets-atebas' },
+  { name: 'Bijoux de plage', href: '/bracelets-plage' },
+  { name: 'Accessoires', href: '/accessoires' },
 ];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,10 +26,10 @@ export default function Header() {
     <header className="bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -65,47 +61,47 @@ export default function Header() {
                 <div className="p-4">
                   {/* Ajouter les catégories de bijoux à la liste déroulante */}
                   {categories.map((category) => (
-                    <a
+                    <Link
                       key={category.name}
-                      href={category.href}
+                      to={category.href}
                       className="block font-semibold text-gray-900 hover:bg-gray-50 rounded-lg px-4 py-2"
                     >
                       {category.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </Popover.Panel>
             </Transition>
           </Popover>
 
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/outlet" className="text-sm font-semibold leading-6 text-gray-900">
             Outlet
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          </Link>
+          <Link to="/histoire" className="text-sm font-semibold leading-6 text-gray-900">
             Notre histoire
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-          Top 2024
-          </a>
+          </Link>
+          <Link to="/top2024" className="text-sm font-semibold leading-6 text-gray-900">
+            Top 2024
+          </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="/contactPage" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/contactPage" className="text-sm font-semibold leading-6 text-gray-900">
             Contactez Nous<span aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt=""
               />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -120,40 +116,40 @@ export default function Header() {
               <div className="space-y-2 py-6">
                 {/* Catégories de bijoux pour le menu mobile */}
                 {categories.map((category) => (
-                  <a
+                  <Link
                     key={category.name}
-                    href={category.href}
+                    to={category.href}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     {category.name}
-                  </a>
+                  </Link>
                 ))}
-                <a
-                  href="#"
+                <Link
+                  to="/outlet"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Outlet
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/histoire"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Notre histoire
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  to="/top2024"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Top 2024
-                </a>
+                </Link>
               </div>
               <div className="py-6">
-                <a
-                  href="/contactPage"
+                <Link
+                  to="../pages/contactPage"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Contactez Nous
-                </a>
+                </Link>
               </div>
             </div>
           </div>
